@@ -1,0 +1,328 @@
+<!--
+● Sku: Carácter tipo numérico con una longitud máxima de 6 dígitos.
+● Artículo: Carácter tipo texto con una longitud máxima de 15 dígitos.
+● Marca: Carácter tipo texto con una longitud máxima de 15 dígitos.
+● Modelo: Carácter tipo texto con una longitud máxima de 20 dígitos.
+● Departamento: Carácter numérico con una longitud de 1 dígitos.
+● Clase: Carácter numérico con una longitud de 2 dígitos.
+● Familia: Carácter numérico con una longitud de 3 dígitos.
+● Fecha de Alta: Tipo fecha.
+● Stock: Carácter tipo numérico con una longitud máxima de 9 dígitos.
+● Cantidad: Carácter tipo numérico con una longitud máxima de 9 dígitos.
+● Descontinuado: Carácter tipo numérico con una longitud máxima de 1 dígito.
+● Fecha Baja: Tipo fecha.
+
+
+-->
+
+<div class="container mt-3">
+  <h1>Administración de artículos</h1>
+  <br />
+  <table
+    class="table table-bordered"
+    border="2"
+    *ngIf="hayRegistros(); else sinarticulos"
+  >
+    <tr>
+      <td>Sku</td>
+      <td>Artículo</td>
+      <td>Marca</td>
+      <td>Modelo</td>
+      <td>Departamento</td>
+      <td>Clase</td>
+      <td>Familia</td>
+      <td>Fecha Alta</td>
+      <td>Stock</td>
+      <td>Cantidad</td>
+      <td>Descontinuado</td>
+      <td>Fecha Baja</td>
+      <td>Borrar</td>
+      <td>Seleccionar</td>
+      <td>Imagen</td>
+    </tr>
+
+    <tr *ngFor="let art of articulos">
+      <td>{{ art.sku }}</td>
+      <td>{{ art.articulo }}</td>
+      <td>{{ art.marca }}</td>
+      <td>{{ art.modelo }}</td>
+      <td>{{ art.departamento }}</td>
+      <td>{{ art.clase }}</td>
+      <td>{{ art.familia }}</td>
+      <td>{{ art.fecha_alta }}</td>
+      <td>{{ art.stock }}</td>
+      <td>{{ art.cantidad }}</td>
+      <td>{{ art.descontinuado }}</td>
+      <td>{{ art.fecha_baja }}</td>
+      <td>
+        <button
+          style="background-color: red;"
+          (click)="confirmarBorrado(art.sku)"
+        >
+          Borrar?
+        </button>
+      </td>
+      <td>
+        <button style="background-color: gray;" (click)="seleccionar(art)">
+          Seleccionar
+        </button>
+      </td>
+      <td>
+        <img
+          width="80px"
+          height="40px"
+          src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101111561L.jpg"
+        />
+      </td>
+    </tr>
+
+    <!--
+      <td>{{ art.codigo }}</td>
+      <td>{{ art.descripcion }}</td>
+      <td>{{ art.precio }}</td>
+      <td><button (click)="borrar(art.codigo)">Borrar?</button></td>
+      <td><button (click)="seleccionar(art)">Seleccionar</button></td>
+      <td>
+        <img
+          width="80px"
+          height="40px"
+          src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101111561L.jpg"
+        />
+      </td>
+    </tr>
+  --></table>
+
+  <br />
+
+  <div class="container mt-3">
+    <h1>Departamentos-Clase-Familia</h1>
+    <br />
+    <table
+      class="table table-bordered"
+      border="2"
+      *ngIf="hayRegistros(); else sinarticulos"
+    >
+      <tr>
+        <td># Departamento</td>
+        <td>Nombre Departamento</td>
+        <td># Clase</td>
+        <td>Nombre Clase</td>
+        <td># Familia</td>
+        <td>Nombre Familia</td>
+        <!--
+        <td>Borrar</td>
+        <td>Seleccionar</td>
+        <td>Imagen</td>
+        -->
+      </tr>
+
+      <tr *ngFor="let art of articulos">
+        <td>{{ art.departamento }}</td>
+        <td *ngIf="nombreDepartamento(art.departamento)">
+          {{ nombreDepartamento(art.departamento) }}
+        </td>
+        <td>{{ art.clase }}</td>
+        <td>{{ nombreClase(art.clase) }}</td>
+        <td>{{ art.familia }}</td>
+        <td>{{ nombreFamilia(art.familia) }}</td>
+
+        <!--
+        <td>
+          <button
+            style="background-color: red;"
+            (click)="confirmarBorrado(art.sku)"
+          >
+            Borrar?
+          </button>
+        </td>
+        <td>
+          <button style="background-color: gray;" (click)="seleccionar(art)">
+            Seleccionar
+          </button>
+        </td>
+        <td>
+          <img
+            width="80px"
+            height="40px"
+            src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101111561L.jpg"
+          />
+        </td>
+      </tr>
+    -->
+
+        <!--
+        <td>{{ art.codigo }}</td>
+        <td>{{ art.descripcion }}</td>
+        <td>{{ art.precio }}</td>
+        <td><button (click)="borrar(art.codigo)">Borrar?</button></td>
+        <td><button (click)="seleccionar(art)">Seleccionar</button></td>
+        <td>
+          <img
+            width="80px"
+            height="40px"
+            src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101111561L.jpg"
+          />
+        </td>
+      </tr>
+    -->
+      </tr>
+    </table>
+
+    <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+
+    <div>
+      <form class="container mt-3">
+        <div class="form-group">
+          <p>
+            Sku:
+            <input
+              name="sku"
+              class="form-control"
+              type="number"
+              [(ngModel)]="art.sku"
+              max="999999"
+            />
+          </p>
+          <p>
+            Artículo:
+            <input
+              name="artic"
+              class="form-control"
+              type="text"
+              [(ngModel)]="art.articulo"
+              [disabled]="!art.sku"
+            />
+          </p>
+          <p>
+            Marca:
+            <input
+              name="marca"
+              class="form-control"
+              type="text"
+              [(ngModel)]="art.marca"
+              [disabled]="!art.articulo"
+            />
+          </p>
+          <p>
+            Modelo:
+            <input
+              name="modelo"
+              class="form-control"
+              type="text"
+              [(ngModel)]="art.modelo"
+              [disabled]="!art.marca"
+            />
+          </p>
+          <p>
+            Departamento:
+            <input
+              name="depa"
+              class="form-control"
+              type="number"
+              [(ngModel)]="art.departamento"
+              [disabled]="!art.modelo"
+            />
+          </p>
+          <p>
+            Clase:
+            <input
+              name="clase"
+              class="form-control"
+              type="number"
+              [(ngModel)]="art.clase"
+              [disabled]="!art.departamento"
+            />
+          </p>
+          <p>
+            Familia:
+            <input
+              name="fam"
+              class="form-control"
+              type="number"
+              [(ngModel)]="art.familia"
+              [disabled]="!art.clase"
+            />
+          </p>
+          <p>
+            Fecha Alta:<input
+              name="fechalt"
+              class="form-control"
+              type="date"
+              [(ngModel)]="art.fecha_alta"
+              [disabled]="!art.familia"
+            />
+          </p>
+          <p>
+            Stock:<input
+              name="stock"
+              class="form-control"
+              type="number"
+              [(ngModel)]="art.stock"
+              [disabled]="!art.clase"
+            />
+          </p>
+          <p>
+            Cantidad:<input
+              name="cant"
+              class="form-control"
+              type="number"
+              [(ngModel)]="art.cantidad"
+              [disabled]="!art.stock"
+            />
+          </p>
+          <p>
+            Descontinuado:<input
+              name="descont"
+              class="form-control"
+              type="number"
+              [(ngModel)]="art.descontinuado"
+              [disabled]="!art.cantidad"
+            />
+          </p>
+          <p>
+            Fecha Baja:<input
+              name="fechabaja"
+              class="form-control"
+              type="date"
+              [(ngModel)]="art.fecha_baja"
+            />
+          </p>
+
+          <p name="vacio3"></p>
+          <p name="vacio" *ngIf="validarCantidad()"></p>
+          <p name="vacio2" *ngIf="validarSku()"></p>
+
+          <!-- Formulario de Articulos con bootstrap -->
+
+          <!--
+    <p>Codigo:<input type="number" [(ngModel)]="art.codigo" /></p>
+    <p>descripcion:<input type="text" [(ngModel)]="art.descripcion" /></p>
+    <p>precio:<input type="number" [(ngModel)]="art.precio" /></p>
+-->
+
+          <p>
+            <button type="button" class="btn btn-primary" (click)="agregar()">
+              Agregar
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-info" (click)="modificar()">
+              Modificar
+            </button>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+<!--
+  <div style="text-align:center">
+    <a routerLink="/ecommerce">Tienda en Linea</a> -
+    <a routerLink="/">Home</a> -
+    <a routerLink="/listapreguntas">ListaPreguntas</a>
+
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  
+  </div>
+  -->
+</div>
